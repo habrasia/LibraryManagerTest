@@ -1,5 +1,6 @@
 ﻿using LibraryManagerTest.Helpers;
 using LibraryManagerTest.Models;
+using LibraryManagerTest.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace LibraryManagerTest.StepDefinitions
     [Binding]
     internal sealed class LibraryManagerStepDefinitions
     {
-        private readonly BookCRUD _bookCRUD;
+        private readonly IBookCRUD _bookCRUD;
 
         public LibraryManagerStepDefinitions()
         {
@@ -27,7 +28,6 @@ namespace LibraryManagerTest.StepDefinitions
                 Description = "Description",
                 Author = "Author"
             };
-
 
         }
 
