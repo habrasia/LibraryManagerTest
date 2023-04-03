@@ -1,4 +1,5 @@
 ﻿using LibraryManagerTest.Models;
+using LibraryManagerTest.Repositories;
 using System.Configuration;
 using System.Net;
 using System.Net.Http.Headers;
@@ -6,7 +7,7 @@ using System.Net.Http.Json;
 
 namespace LibraryManagerTest.Helpers
 {
-    internal class BookCRUD
+    public class BookCRUD : IBookCRUD
     {
         private HttpClient _client;
 
@@ -22,7 +23,7 @@ namespace LibraryManagerTest.Helpers
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        internal async Task<Book> AddBook(Book book)
+        public async Task<Book> AddBookAsync(Book book)
         {
             HttpResponseMessage response = await _client.PostAsJsonAsync($"books", book);
 
@@ -31,7 +32,7 @@ namespace LibraryManagerTest.Helpers
             return await response.Content.ReadAsAsync<Book>();
         }
 
-        internal async Task<List<Book>> GetBooksByTitle(string? title = null)
+        public async Task<IEnumerable<Book>> GetBooksByTitleAsync(string? title = null)
         {
             var response = await _client.GetAsync($"books?title={title}");
 
@@ -40,7 +41,7 @@ namespace LibraryManagerTest.Helpers
             return await response.Content.ReadAsAsync<List<Book>>();
         }
 
-        internal async Task<Book> GetBookById(int? id = null)
+        public async Task<Book> GetBookByIdAsync(int? id = null)
         {
             var response = await _client.GetAsync($"books/{id}");
 
@@ -49,7 +50,7 @@ namespace LibraryManagerTest.Helpers
             return await response.Content.ReadAsAsync<Book>();
         }
 
-        internal async Task<Book> UpdateBook(int id, Book book)
+        public async Task<Book> UpdateBookAsync(int id, Book book)
         {
             HttpResponseMessage response = await _client.PutAsJsonAsync($"books/{id}", book);
 
@@ -58,7 +59,7 @@ namespace LibraryManagerTest.Helpers
             return await response.Content.ReadAsAsync<Book>();
         }
 
-        internal async Task DeleteBook(int id)
+        public async Task DeleteBookAsync(int id)
         {
             HttpResponseMessage response = await _client.DeleteAsync($"books/{id}");
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagerTest.Models
 {
-    internal class Book
+    public class Book
     {
         public static int globalBookId;
 
@@ -26,6 +26,14 @@ namespace LibraryManagerTest.Models
         public Book(string title, string description, string author)
         {
             Id = Interlocked.Increment(ref globalBookId);
+            Title = title;
+            Description = description;
+            Author = author;
+        }
+
+        public Book(int id, string title, string description, string author)
+        {
+            Id = Id;
             Title = title;
             Description = description;
             Author = author;
