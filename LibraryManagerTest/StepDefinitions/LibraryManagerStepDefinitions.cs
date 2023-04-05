@@ -53,11 +53,11 @@ namespace LibraryManagerTest.StepDefinitions
         [Then(@"response message should contain the added book information")]
         public void ThenResponseMessageShouldContainTheAddedBookInformation()
         {
-            Assert.AreEqual(_bookResult.Id, _book.Id, $"Id check failed for add {_book.ToString()}");
+            Assert.AreEqual(_book.Id, _bookResult.Id, $"Id check failed for add {_book.ToString()}");
             //Assertion removed due to the existing bug Author value isn't assinged to the book while posted
             //Assert.AreEqual(_book.Author, _bookResult.Author, $"Author check failed for add {_book.ToString()}");
-            Assert.AreEqual(_bookResult.Title, _bookResult.Title, $"Title check failed for add {_book.ToString()}");
-            Assert.AreEqual(_bookResult.Description, _bookResult.Description, $"Description check failed for add {_book.ToString()}");
+            Assert.AreEqual(_book.Title, _bookResult.Title, $"Title check failed for add {_book.ToString()}");
+            Assert.AreEqual(_book.Description, _bookResult.Description, $"Description check failed for add {_book.ToString()}");
         }
 
         [Given(@"I build a request with '([^']*)' value that extends the maximum length of (.*) characters")]
@@ -97,18 +97,20 @@ namespace LibraryManagerTest.StepDefinitions
             var description = "DescriptionIdTest";
 
             _book = new Book(id, author, title, description);
+            _bookCRUD.AddBookAsync(_book);
         }
 
-        [When(@"I send a request to retrive a book by id '([^']*)'")]
-        public void WhenISendARequestToRetriveABookById(string p0)
+        [When(@"I send a request to retrive a book by id '(.*)'")]
+        public void WhenISendARequestToRetriveABookById(int id)
         {
-            throw new PendingStepException();
+            _response = _bookCRUD.GetBookByIdAsync(id).Result;
+            _bookResult = _response.Content.ReadAsAsync<Book>().Result;
         }
 
-        [Then(@"response message should contain a single book with id '([^']*)'")]
-        public void ThenResponseMessageShouldContainASingleBookWithId(string p0)
+        [Then(@"response message should contain a single book with id '(.*)'")]
+        public void ThenResponseMessageShouldContainASingleBookWithId(int id)
         {
-            throw new PendingStepException();
+            Assert.AreEqual(id, _bookResult.Id, $"Id check failed for add {_book.ToString()}");
         }
 
         [Given(@"there is no book with id '([^']*)' available")]
@@ -140,12 +142,5 @@ namespace LibraryManagerTest.StepDefinitions
         {
             throw new PendingStepException();
         }
-
-        [When(@"I send a request to retrive books with '([^']*)' phrase in the title")]
-        public void WhenISendARequestToRetriveBooksWithPhraseInTheTitle(string nonExistingBook)
-        {
-            throw new PendingStepException();
-        }
-
     }
 }

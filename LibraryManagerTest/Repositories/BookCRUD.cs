@@ -40,13 +40,15 @@ namespace LibraryManagerTest.Helpers
             return await response.Content.ReadAsAsync<List<Book>>();
         }
 
-        public async Task<Book> GetBookByIdAsync(int? id = null)
+        public async Task<HttpResponseMessage> GetBookByIdAsync(int? id = null)
         {
             var response = await _client.GetAsync($"books/{id}");
 
-            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed when retriving book by its id: \"{id}\"");
+            //Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed when retriving book by its id: \"{id}\"");
 
-            return await response.Content.ReadAsAsync<Book>();
+            //return await response.Content.ReadAsAsync<Book>();
+
+            return response;
         }
 
         public async Task<Book> UpdateBookAsync(int id, Book book)

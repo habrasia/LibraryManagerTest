@@ -6,7 +6,7 @@ namespace LibraryManagerTest.Repositories
     {
         Task<HttpResponseMessage> AddBookAsync(Book book);
         Task<IEnumerable<Book>> GetBooksByTitleAsync(string? title);
-        Task<Book> GetBookByIdAsync(int? id);
+        Task<HttpResponseMessage> GetBookByIdAsync(int? id);
         Task<Book> UpdateBookAsync(int id, Book book);
         Task DeleteBookAsync(int id);
     }
