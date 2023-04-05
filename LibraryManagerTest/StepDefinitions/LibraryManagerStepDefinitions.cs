@@ -1,7 +1,9 @@
 ﻿using LibraryManagerTest.Helpers;
 using LibraryManagerTest.Models;
 using LibraryManagerTest.Repositories;
+using Newtonsoft.Json;
 using System.Net;
+using System.Web.Http;
 
 namespace LibraryManagerTest.StepDefinitions
 {
@@ -81,7 +83,7 @@ namespace LibraryManagerTest.StepDefinitions
         [Then(@"error message should be returned")]
         public void ThenErrorMessageShouldBeReturned()
         {
-            //ert.IsNotNull(_response.Content.ReadAsStringAsync().Result);
+            var error = _response.Content.ReadAsStringAsync().Result;
         }
     }
 }
