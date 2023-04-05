@@ -88,5 +88,64 @@ namespace LibraryManagerTest.StepDefinitions
 
             Assert.IsNotNull(error.Message, $"Error message check failed for add {_book.ToString()}");
         }
+
+        [Given(@"there is a book with id '(.*)' available")]
+        public void GivenThereIsABookWithIdAvailable(int id)
+        {
+            var author = "AuthorIdTest";
+            var title = "TitleIdTest";
+            var description = "DescriptionIdTest";
+
+            _book = new Book(id, author, title, description);
+        }
+
+        [When(@"I send a request to retrive a book by id '([^']*)'")]
+        public void WhenISendARequestToRetriveABookById(string p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"response message should contain a single book with id '([^']*)'")]
+        public void ThenResponseMessageShouldContainASingleBookWithId(string p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"there is no book with id '([^']*)' available")]
+        public void GivenThereIsNoBookWithIdAvailable(string p0)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"there are books with titles that contain '([^']*)' phrase in them available")]
+        public void GivenThereAreBooksWithTitlesThatContainPhraseInThemAvailable(string test)
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"I send a request to retrive books with '([^']*)' phrase in the title")]
+        public void WhenISendARequestToRetriveBooksWithPhraseInTheTitle(string test)
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"response message should contain a list of books where title contains '([^']*)' word")]
+        public void ThenResponseMessageShouldContainAListOfBooksWhereTitleContainsWord(string test)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"there are no books with titles that contain '([^']*)' phrase in them available")]
+        public void GivenThereAreNoBooksWithTitlesThatContainPhraseInThemAvailable(string nonExistingBook)
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"I send a request to retrive books with '([^']*)' phrase in the title")]
+        public void WhenISendARequestToRetriveBooksWithPhraseInTheTitle(string nonExistingBook)
+        {
+            throw new PendingStepException();
+        }
+
     }
 }

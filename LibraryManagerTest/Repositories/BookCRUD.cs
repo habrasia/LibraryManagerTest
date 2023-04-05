@@ -27,7 +27,7 @@ namespace LibraryManagerTest.Helpers
 
         public async Task<HttpResponseMessage> AddBookAsync(Book book)
         {
-            HttpResponseMessage response = await _client.PostAsJsonAsync($"books", book);
+            var response = await _client.PostAsJsonAsync($"books", book);
             return response;
         }
 
