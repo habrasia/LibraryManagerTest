@@ -80,10 +80,13 @@ namespace LibraryManagerTest.StepDefinitions
             _book = new Book(author, title, description);
         }
 
-        [Then(@"error message should be returned")]
-        public void ThenErrorMessageShouldBeReturned()
+        [Then(@"'([^']*)' error message should be returned")]
+        public void ThenErrorMessageShouldBeReturned(string errorMessage)
         {
             var error = _response.Content.ReadAsStringAsync().Result;
+            //var error = _response.Content.ReadAsAsync<Error>().Result;
+
+            Assert.(errorMessage, error, $"Error message check failed for add {_book.ToString()}");
         }
     }
 }

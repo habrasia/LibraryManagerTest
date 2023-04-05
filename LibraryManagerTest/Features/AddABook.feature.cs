@@ -174,14 +174,15 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extends allowed " +
             "maximum characters lenght")]
-        [NUnit.Framework.TestCaseAttribute("Author", "31", null)]
-        [NUnit.Framework.TestCaseAttribute("Title", "101", null)]
-        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendsAllowedMaximumCharactersLenght(string field, string numberOfCharacters, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Author", "31", "dfssdf", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "101", "fdsdf", null)]
+        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendsAllowedMaximumCharactersLenght(string field, string numberOfCharacters, string errorMessage, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Field", field);
             argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
+            argumentsOfScenario.Add("ErrorMessage", errorMessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extends allowed " +
                     "maximum characters lenght", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 24
@@ -216,7 +217,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 28
- testRunner.And("error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("\'{0}\' error message should be returned", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

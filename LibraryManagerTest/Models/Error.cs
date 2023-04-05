@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagerTest.Models
 {
-    internal class ErrorMessage
+    internal class Error
     {
         public string Message { get; set; }
     }
