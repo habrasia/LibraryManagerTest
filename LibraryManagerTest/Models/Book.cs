@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibraryManagerTest.Models
+﻿namespace LibraryManagerTest.Models
 {
     public class Book
     {
-        public static int globalBookId = 7;
-
+        private static int globalBookId;
         public int Id { get; set; }
         public string Author { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-
 
         public override string ToString()
         {
@@ -27,8 +19,9 @@ namespace LibraryManagerTest.Models
 
         public Book(string author, string title, string description)
         {
-            globalBookId++;
-            Id = globalBookId;
+            Random rnd = new Random();
+
+            Id = rnd.Next();
             Author = author;
             Title = title;
             Description = description;

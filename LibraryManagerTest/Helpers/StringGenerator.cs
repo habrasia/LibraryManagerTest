@@ -1,7 +1,7 @@
 ﻿namespace LibraryManagerTest.Helpers
 {
-    internal class StringGenerator
+    internal static class StringGenerator
     {
-        public string GenerateStringOfGivenLength(int length) => new string('A', length);
+        public static string GenerateStringOfGivenLength(int length) => new string('A', length);
     }
 }
