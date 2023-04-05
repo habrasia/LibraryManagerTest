@@ -26,7 +26,7 @@ namespace LibraryManagerTest.StepDefinitions
         [Given(@"I build a request with Author set to '([^']*)', Title set to '([^']*)' and Description set to '([^']*)'")]
         public void GivenIBuildARequestWithAuthorSetToTitleSetToAndDescriptionSetTo(string author, string title, string description)
         {
-            _book = new Book(12, author, title, description);
+            _book = new Book(author, title, description);
         }
 
         [When(@"I execute a post request to add a book to the corresponding library manager endpoint")]

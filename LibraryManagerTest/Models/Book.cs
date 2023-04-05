@@ -8,7 +8,7 @@ namespace LibraryManagerTest.Models
 {
     public class Book
     {
-        public static int globalBookId;
+        public static int globalBookId = 7;
 
         public int Id { get; set; }
         public string Author { get; set; }
@@ -27,7 +27,8 @@ namespace LibraryManagerTest.Models
 
         public Book(string author, string title, string description)
         {
-            Id = Interlocked.Increment(ref globalBookId);
+            globalBookId++;
+            Id = globalBookId;
             Author = author;
             Title = title;
             Description = description;
