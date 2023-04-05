@@ -8,6 +8,6 @@ namespace LibraryManagerTest.Repositories
         Task<IEnumerable<Book>> GetBooksByTitleAsync(string? title);
         Task<HttpResponseMessage> GetBookByIdAsync(int? id);
         Task<Book> UpdateBookAsync(int id, Book book);
-        Task DeleteBookAsync(int id);
+        Task<HttpResponseMessage> DeleteBookAsync(int id);
     }
 }

@@ -11,8 +11,8 @@ namespace LibraryManagerTest.StepDefinitions
     internal sealed class LibraryManagerStepDefinitions
     {
         private readonly IBookCRUD _bookCRUD;
-        private Book _book;
         private HttpResponseMessage _response;
+        private Book _book;
         private Book _bookResult;
 
         public LibraryManagerStepDefinitions()
@@ -44,8 +44,8 @@ namespace LibraryManagerTest.StepDefinitions
                 case 204:
                     Assert.AreEqual(HttpStatusCode.NoContent, _response.StatusCode, $"Status response failed for add {_book.ToString()}");
                     break;
-                case 400:
-                    Assert.AreEqual(HttpStatusCode.BadRequest, _response.StatusCode, $"Status response failed for add {_book.ToString()}");
+                case 404:
+                    Assert.AreEqual(HttpStatusCode.NotFound, _response.StatusCode, $"Status response failed");
                     break;
             }
         }
@@ -113,10 +113,13 @@ namespace LibraryManagerTest.StepDefinitions
             Assert.AreEqual(id, _bookResult.Id, $"Id check failed for add {_book.ToString()}");
         }
 
-        [Given(@"there is no book with id '([^']*)' available")]
-        public void GivenThereIsNoBookWithIdAvailable(string p0)
+        [Given(@"there is no book with id '(.*)' available")]
+        public void GivenThereIsNoBookWithIdAvailable(int id)
         {
-            throw new PendingStepException();
+            if (_bookCRUD.GetBookByIdAsync(id).Result.IsSuccessStatusCode)
+            {
+                _bookCRUD.DeleteBookAsync(id);
+            }
         }
 
         [Given(@"there are books with titles that contain '([^']*)' phrase in them available")]

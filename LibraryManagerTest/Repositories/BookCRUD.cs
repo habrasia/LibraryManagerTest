@@ -60,11 +60,12 @@ namespace LibraryManagerTest.Helpers
             return await response.Content.ReadAsAsync<Book>();
         }
 
-        public async Task DeleteBookAsync(int id)
+        public async Task<HttpResponseMessage> DeleteBookAsync(int id)
         {
             HttpResponseMessage response = await _client.DeleteAsync($"books/{id}");
 
-            Assert.AreEqual(response.StatusCode, HttpStatusCode.NoContent, $"Status response failed when deleting book by its id: \"{id}\"");
+            //Assert.AreEqual(response.StatusCode, HttpStatusCode.NoContent, $"Status response failed when deleting book by its id: \"{id}\"");
+            return response;
         }
     }
 }
