@@ -3,7 +3,7 @@ To ensure a book can be added to the library
 
 Scenario Outline: Successfully adding a book to the library
 	Given I build a request with Author set to '<Author>', Title set to '<Title>' and Description set to '<Description>'
-	When I execute a post request to add a book to the corresponding library manager endpoint, 
+	When I execute a post request to add a book to the corresponding library manager endpoint
 	Then the response status code should be 200
 	And response message should contain the added book information
 Examples: 

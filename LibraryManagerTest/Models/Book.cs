@@ -11,32 +11,34 @@ namespace LibraryManagerTest.Models
         public static int globalBookId;
 
         public int Id { get; set; }
-
+        public string Author { get; set; }
         public string Title { get; set; }
-
         public string Description { get; set; }
 
-        public string Author { get; set; }
 
         public override string ToString()
         {
             return $"Book Id {Id}, Title: {Title}";
         }
 
-        public Book(string title, string description, string author)
+        public Book()
         {
-            Id = Interlocked.Increment(ref globalBookId);
-            Title = title;
-            Description = description;
-            Author = author;
         }
 
-        public Book(int id, string title, string description, string author)
+        public Book(string author, string title, string description)
         {
-            Id = Id;
+            Id = Interlocked.Increment(ref globalBookId);
+            Author = author;
             Title = title;
             Description = description;
+        }
+
+        public Book(int id, string author, string title, string description)
+        {
+            Id = id;
             Author = author;
+            Title = title;
+            Description = description;
         }
     }
 }

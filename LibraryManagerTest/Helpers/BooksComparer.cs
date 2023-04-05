@@ -10,7 +10,7 @@ namespace LibraryManagerTest.Helpers
             if (ReferenceEquals(x, null)) return false;
             if (ReferenceEquals(y, null)) return false;
             if (x.GetType() != y.GetType()) return false;
-            return x.Id == y.Id && x.Author.Equals(y.Author) && x.Title == y.Title && x.Description == y.Description;
+            return x.Author.Equals(y.Author) && x.Title == y.Title && x.Description == y.Description;
         }
 
         public int GetHashCode(Book obj)

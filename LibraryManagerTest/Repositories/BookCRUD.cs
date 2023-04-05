@@ -1,35 +1,33 @@
 ﻿using LibraryManagerTest.Models;
 using LibraryManagerTest.Repositories;
+using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using static System.Net.WebRequestMethods;
+using ConfigurationManager = System.Configuration.ConfigurationManager;
 
 namespace LibraryManagerTest.Helpers
 {
     public class BookCRUD : IBookCRUD
     {
         private HttpClient _client;
+        private string _url = "http://localhost:9000/api/";
 
         public BookCRUD()
         {
             _client = new HttpClient();
-
-            var url = ConfigurationManager.AppSettings["apiUrl"];
-
-            _client.BaseAddress = new Uri(url);
+            _client.BaseAddress = new Uri(_url);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<Book> AddBookAsync(Book book)
+        public async Task<HttpResponseMessage> AddBookAsync(Book book)
         {
             HttpResponseMessage response = await _client.PostAsJsonAsync($"books", book);
-
-            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed for add {book.ToString()}");
-
-            return await response.Content.ReadAsAsync<Book>();
+            return response;
         }
 
         public async Task<IEnumerable<Book>> GetBooksByTitleAsync(string? title = null)

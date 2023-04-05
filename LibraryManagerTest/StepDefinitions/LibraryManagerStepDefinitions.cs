@@ -4,6 +4,7 @@ using LibraryManagerTest.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,9 @@ namespace LibraryManagerTest.StepDefinitions
     internal sealed class LibraryManagerStepDefinitions
     {
         private readonly IBookCRUD _bookCRUD;
+        private Book _book;
+        private HttpResponseMessage _response;
+        private Book _bookResult;
 
         public LibraryManagerStepDefinitions()
         {
@@ -22,31 +26,31 @@ namespace LibraryManagerTest.StepDefinitions
         [Given(@"I build a request with Author set to '([^']*)', Title set to '([^']*)' and Description set to '([^']*)'")]
         public void GivenIBuildARequestWithAuthorSetToTitleSetToAndDescriptionSetTo(string author, string title, string description)
         {
-            var book = new Book(author, title, description)
-            {
-                Title = "Test",
-                Description = "Description",
-                Author = "Author"
-            };
-
+            _book = new Book(12, author, title, description);
         }
 
         [When(@"I execute a post request to add a book to the corresponding library manager endpoint")]
         public void WhenIExecuteAPostRequestToAddABookToTheCorrespondingLibraryManagerEndpoint()
         {
-            
+            _response = _bookCRUD.AddBookAsync(_book).Result;
+            _bookResult = _response.Content.ReadAsAsync<Book>().Result;
         }
 
         [Then(@"the response status code should be (.*)")]
-        public void ThenTheResponseStatusCodeShouldBe(int p0)
+        public void ThenTheResponseStatusCodeShouldBe(int status)
         {
-            throw new PendingStepException();
+            switch(status)
+            {
+                case 200:
+                    Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode, $"Status response failed for add {_book.ToString()}");
+                    break;
+            }
         }
 
         [Then(@"response message should contain the added book information")]
         public void ThenResponseMessageShouldContainTheAddedBookInformation()
         {
-            throw new PendingStepException();
+            Assert.That(_bookResult.Equals(_book), Is.True);
         }
 
         [Given(@"I build a request with '([^']*)' value that extends the maximum length of '([^']*)' characters")]
@@ -60,12 +64,5 @@ namespace LibraryManagerTest.StepDefinitions
         {
             throw new PendingStepException();
         }
-
-        [Given(@"I build a request with '([^']*)' value that extends the maximum length of '([^']*)' characters")]
-        public void GivenIBuildARequestWithValueThatExtendsTheMaximumLengthOfCharacters(string title, string p1)
-        {
-            throw new PendingStepException();
-        }
-
     }
 }
