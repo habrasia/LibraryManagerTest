@@ -18,6 +18,7 @@ namespace LibraryManagerTest.Helpers
         public BookCRUD()
         {
             _client = new HttpClient();
+
             _client.BaseAddress = new Uri(_url);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(

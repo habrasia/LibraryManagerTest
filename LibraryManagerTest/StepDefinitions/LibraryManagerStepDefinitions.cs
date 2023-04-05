@@ -77,5 +77,11 @@ namespace LibraryManagerTest.StepDefinitions
 
             _book = new Book(author, title, description);
         }
+
+        [Then(@"error message should be returned")]
+        public void ThenErrorMessageShouldBeReturned()
+        {
+            Assert.IsNotNull(_response.Content.ReadAsStringAsync().Result);
+        }
     }
 }

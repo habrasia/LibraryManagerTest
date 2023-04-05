@@ -124,14 +124,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when Author value extends allowed ma" +
-            "ximum characters length")]
-        public virtual void AddingABookToTheLibraryIsNotPossibleWhenAuthorValueExtendsAllowedMaximumCharactersLength()
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library when values lenghts is bellow allowed maximum charac" +
+            "ters lenght")]
+        [NUnit.Framework.TestCaseAttribute("Author", "30", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "100", null)]
+        public virtual void AddingABookToTheLibraryWhenValuesLenghtsIsBellowAllowedMaximumCharactersLenght(string field, string numberOfCharacters, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when Author value extends allowed ma" +
-                    "ximum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("Field", field);
+            argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library when values lenghts is bellow allowed maximum charac" +
+                    "ters lenght", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -153,30 +157,34 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 15
- testRunner.Given("I build a request with \'Author\' value that extends the maximum length of 30 chara" +
-                        "cters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I build a request with \'{0}\' value that extends the maximum length of {1} charact" +
+                            "ers", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 16
  testRunner.When("I execute a post request to add a book to the corresponding library manager endpo" +
                         "int", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
- testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when Title value extends allowed max" +
-            "imum characters length")]
-        public virtual void AddingABookToTheLibraryIsNotPossibleWhenTitleValueExtendsAllowedMaximumCharactersLength()
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extends allowed " +
+            "maximum characters lenght")]
+        [NUnit.Framework.TestCaseAttribute("Author", "31", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "101", null)]
+        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendsAllowedMaximumCharactersLenght(string field, string numberOfCharacters, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when Title value extends allowed max" +
-                    "imum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 20
+            argumentsOfScenario.Add("Field", field);
+            argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extends allowed " +
+                    "maximum characters lenght", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -196,16 +204,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 21
- testRunner.And("I build a request with \'Title\' value that extends the maximum length of 100 chara" +
-                        "cters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.Given(string.Format("I build a request with \'{0}\' value that extends the maximum length of {1} charact" +
+                            "ers", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 22
+#line 26
  testRunner.When("I execute a post request to add a book to the corresponding library manager endpo" +
                         "int", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
+#line 27
  testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 28
+ testRunner.And("error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
