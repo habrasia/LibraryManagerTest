@@ -1,8 +1,8 @@
 ﻿using LibraryManagerTest.Helpers;
 using LibraryManagerTest.Models;
 using LibraryManagerTest.Repositories;
-using Newtonsoft.Json;
 using System.Net;
+using System.Text.Json;
 using System.Web.Http;
 
 namespace LibraryManagerTest.StepDefinitions
@@ -80,13 +80,13 @@ namespace LibraryManagerTest.StepDefinitions
             _book = new Book(author, title, description);
         }
 
-        [Then(@"'([^']*)' error message should be returned")]
-        public void ThenErrorMessageShouldBeReturned(string errorMessage)
+        [Then(@"an error message should be returned")]
+        public void ThenErrorMessageShouldBeReturned()
         {
-            //var error = _response.Content.ReadAsStringAsync().Result;
-            //var error = _response.Content.ReadAsAsync<Error>().Result;
+            string errorMessageString = _response.Content.ReadAsStringAsync().Result;
+            Error? error = JsonSerializer.Deserialize<Error>(errorMessageString);
 
-            //Assert.(errorMessage, error, $"Error message check failed for add {_book.ToString()}");
+            Assert.IsNotNull(error.Message, $"Error message check failed for add {_book.ToString()}");
         }
     }
 }

@@ -25,9 +25,9 @@ Scenario Outline: Adding a book to the library is not possible when values lengh
 	Given I build a request with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
 	When I execute a post request to add a book to the corresponding library manager endpoint
 	Then the response status code should be 400
-	And '<ErrorMessage>' error message should be returned
+	And an error message should be returned
 
 Examples: 
-	| Field  | NumberOfCharacters | ErrorMessage |
-	| Author | 31                 | dfssdf |
-	| Title  | 101                | fdsdf  |
+	| Field  | NumberOfCharacters |
+	| Author | 31                 |
+	| Title  | 101                |
