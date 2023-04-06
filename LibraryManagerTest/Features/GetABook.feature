@@ -21,4 +21,6 @@ Scenario: Get all books that contain the given word in the title
 Scenario: Attempt to get a book by non-existing title return an empty list
 	Given there are no books with titles that contain 'NonExistingBook' phrase in them available
 	When I send a request to retrive books with 'NonExistingBook' phrase in the title
-	Then the response status code should be 404
+	Then the response status code should be 200
+	And response message should contain an empty list
+

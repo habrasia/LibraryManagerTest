@@ -157,9 +157,25 @@ namespace LibraryManagerTest.StepDefinitions
         }
 
         [Given(@"there are no books with titles that contain '([^']*)' phrase in them available")]
-        public void GivenThereAreNoBooksWithTitlesThatContainPhraseInThemAvailable(string nonExistingBook)
+        public void GivenThereAreNoBooksWithTitlesThatContainPhraseInThemAvailable(string title)
         {
-            throw new PendingStepException();
+            _response = _bookCRUD.GetBooksByTitleAsync(title).Result;
+            _booksListResult = _response.Content.ReadAsAsync<List<Book>>().Result;
+
+            if (_booksListResult.Count != 0)
+            {
+                foreach (var book in _booksListResult)
+                {
+                    _bookCRUD.DeleteBookAsync(book.Id);
+                }
+            }
         }
+
+        [Then(@"response message should contain an empty list")]
+        public void ThenResponseMessageShouldContainAnEmptyList()
+        {
+            Assert.IsEmpty(_booksListResult);
+        }
+
     }
 }
