@@ -190,6 +190,7 @@ namespace LibraryManagerTest.StepDefinitions
         }
 
         [When(@"I send a request to delete a book by id '(.*)'")]
+        [When(@"I send a request to delete a book by id '(.*)' again")]
         public void WhenISendARequestToDeleteABookById(int id)
         {
             _response = _bookCRUD.DeleteBookAsync(id).Result;

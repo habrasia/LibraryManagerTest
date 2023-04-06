@@ -14,3 +14,11 @@ Scenario: Attempt to delete a book that doesn't exist return an error
 	When I send a request to delete a book by id '9999'
 	Then the response status code should be 400
 	And an error message should be returned
+
+Scenario: Attempt to delete a book for the second time
+	Given there is a book with id '8' available
+	When I send a request to delete a book by id '8'
+	Then the response status code should be 204
+	When I send a request to delete a book by id '8' again
+	Then the response status code should be 404
+	And an error message should be returned

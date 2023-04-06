@@ -2,7 +2,6 @@
 {
     public class Book
     {
-        private static int globalBookId;
         public int Id { get; set; }
         public string Author { get; set; }
         public string Title { get; set; }
