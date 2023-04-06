@@ -43,18 +43,19 @@ namespace LibraryManagerTest.Helpers
             return response;
         }
 
-        public async Task<Book> UpdateBookAsync(int id, Book book)
+        public async Task<HttpResponseMessage> UpdateBookAsync(int id, Book book)
         {
             HttpResponseMessage response = await _client.PutAsJsonAsync($"books/{id}", book);
 
-            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed to update book of id {id} to {book.ToString()}");
+            //Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed to update book of id {id} to {book.ToString()}");
 
-            return await response.Content.ReadAsAsync<Book>();
+            //return await response.Content.ReadAsAsync<Book>();
+            return response;
         }
 
         public async Task<HttpResponseMessage> DeleteBookAsync(int id)
         {
-            HttpResponseMessage response = await _client.DeleteAsync($"books/{id}");
+            var response = await _client.DeleteAsync($"books/{id}");
             return response;
         }
     }

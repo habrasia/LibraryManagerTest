@@ -52,6 +52,7 @@ namespace LibraryManagerTest.StepDefinitions
         }
 
         [Then(@"response message should contain the added book information")]
+        [Then(@"response message should contain the updated book information")]
         public void ThenResponseMessageShouldContainTheAddedBookInformation()
         {
             Assert.AreEqual(_book.Id, _bookResult.Id, $"Id check failed for add {_book.ToString()}");
@@ -104,7 +105,7 @@ namespace LibraryManagerTest.StepDefinitions
         public void WhenISendARequestToRetriveABookById(int id)
         {
             _response = _bookCRUD.GetBookByIdAsync(id).Result;
-            //_bookResult = _response.Content.ReadAsAsync<Book>().Result;
+            _bookResult = _response.Content.ReadAsAsync<Book>().Result;
         }
 
         [Then(@"response message should contain a single book with id '(.*)'")]
@@ -182,5 +183,39 @@ namespace LibraryManagerTest.StepDefinitions
             _response = _bookCRUD.DeleteBookAsync(id).Result;
         }
 
+        [Given(@"I build an update request for a book with id '(.*)' with Author set to '([^']*)', Title set to '([^']*)' and Description set to '([^']*)'")]
+        public void GivenIBuildAnUpdateRequestForABookWithIdWithAuthorSetToTitleSetToAndDescriptionSetTo(int id, string changedAuthor, string changedTitle, string changedDescription)
+        {
+            _book = new Book(id, changedAuthor, changedTitle, changedDescription);
+        }
+
+        [Given(@"I build a request for a book with id '(.*)' with '([^']*)' value that extends the maximum length of (.*) characters")]
+        public void GivenIBuildARequestForABookWithIdWithValueThatExtendsTheMaximumLengthOfCharacters(int id, string value, int lenght)
+        {
+
+            var author = "Author";
+            var title = "Title";
+            var description = "Description";
+
+            switch (value)
+            {
+                case "Author":
+                    author = StringGenerator.GenerateStringOfGivenLength(lenght);
+                    break;
+                case "Title":
+                    title = StringGenerator.GenerateStringOfGivenLength(lenght);
+                    break;
+            }
+
+            _book = new Book(id, author, title, description);
+        }
+       
+
+        [When(@"I execute an update request to update the books of id '([^'].*)' information to the corresponding library manager endpoint")]
+        public void WhenIExecuteAnUpdateRequestToUpdateTheBooksOfIdInformationToTheCorrespondingLibraryManagerEndpoint(int id)
+        {
+            _response = _bookCRUD.UpdateBookAsync(id, _book).Result;
+            _bookResult = _response.Content.ReadAsAsync<Book>().Result;
+        }
     }
 }

@@ -106,37 +106,39 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Given(string.Format("I build a request with \'Author\' set to \'{0}\'", author), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("there is a book with id \'5\' available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
- testRunner.And(string.Format("I build a request with \'Title\' set to \'{0}\'", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I build an update request for a book with id \'5\' with Author set to \'{0}\', Title " +
+                            "set to \'{1}\' and Description set to \'{2}\'", author, title, description), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 7
- testRunner.And(string.Format("I build a request with \'Description\' set to \'{0}\'", description), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I execute an update request to update the books of id \'5\' information to the corr" +
+                        "esponding library manager endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.When("I execute an update request to update book\'s information to the corresponding lib" +
-                        "rary manager endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
  testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
- testRunner.And(string.Format("response message should contain the added book information (\"{0}\", \"{1}\", \"{2}\")", author, title, description), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+ testRunner.And("response message should contain the added book information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Updating book\'s information is not possible when Author value extends allowed max" +
-            "imum characters length")]
-        public virtual void UpdatingBooksInformationIsNotPossibleWhenAuthorValueExtendsAllowedMaximumCharactersLength()
+        [NUnit.Framework.DescriptionAttribute("Updating a book\'s information when new values lenghts are bellow allowed maximum " +
+            "characters length")]
+        [NUnit.Framework.TestCaseAttribute("Author", "30", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "100", null)]
+        public virtual void UpdatingABooksInformationWhenNewValuesLenghtsAreBellowAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating book\'s information is not possible when Author value extends allowed max" +
-                    "imum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("Field", field);
+            argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating a book\'s information when new values lenghts are bellow allowed maximum " +
+                    "characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -158,37 +160,37 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 17
- testRunner.Given("I build a request with \'Author\' value that extends the maximum length of \'30\' cha" +
-                        "racters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("there is a book with id \'5\' available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
- testRunner.And("I build a request with \'Title\' value that extends the maximum length of \'100\' cha" +
-                        "racters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I build a request for a book with id \'5\' with \'{0}\' value that extends the maximu" +
+                            "m length of {1} characters", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
- testRunner.When("I execute an update request to update book\'s information to the corresponding lib" +
-                        "rary manager endpoint with id: \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I execute an update request to update the books of id \'4\' information to the corr" +
+                        "esponding library manager endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 20
- testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 21
- testRunner.And("an error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Updating book\'s information is not possible when Title value extends allowed maxi" +
-            "mum characters length")]
-        public virtual void UpdatingBooksInformationIsNotPossibleWhenTitleValueExtendsAllowedMaximumCharactersLength()
+        [NUnit.Framework.DescriptionAttribute("Updating a book\'s information when new values lenghts extend allowed maximum char" +
+            "acters length")]
+        [NUnit.Framework.TestCaseAttribute("Author", "31", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "101", null)]
+        public virtual void UpdatingABooksInformationWhenNewValuesLenghtsExtendAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating book\'s information is not possible when Title value extends allowed maxi" +
-                    "mum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 23
+            argumentsOfScenario.Add("Field", field);
+            argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating a book\'s information when new values lenghts extend allowed maximum char" +
+                    "acters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -208,22 +210,21 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 24
- testRunner.Given("I build a request with \'Author\' value that extends the maximum length of \'30\' cha" +
-                        "racters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+ testRunner.Given("there is a book with id \'5\' available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 25
- testRunner.And("I build a request with \'Title\' value that extends the maximum length of \'100\' cha" +
-                        "racters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.And(string.Format("I build a request for a book with id \'5\' with \'{0}\' value that extends the maximu" +
+                            "m length of {1} characters", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 26
- testRunner.When("I execute an update request to update book\'s information to the corresponding lib" +
-                        "rary manager endpoint with id: \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.When("I execute an update request to update the books of id \'4\' information to the corr" +
+                        "esponding library manager endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 27
+#line 31
  testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 28
+#line 32
  testRunner.And("an error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

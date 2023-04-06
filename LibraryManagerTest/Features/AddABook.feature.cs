@@ -124,18 +124,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library when values lenghts is bellow allowed maximum charac" +
-            "ters lenght")]
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
+            "cters length")]
         [NUnit.Framework.TestCaseAttribute("Author", "30", null)]
         [NUnit.Framework.TestCaseAttribute("Title", "100", null)]
-        public virtual void AddingABookToTheLibraryWhenValuesLenghtsIsBellowAllowedMaximumCharactersLenght(string field, string numberOfCharacters, string[] exampleTags)
+        public virtual void AddingABookToTheLibraryWhenValuesLenghtsAreBellowAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Field", field);
             argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library when values lenghts is bellow allowed maximum charac" +
-                    "ters lenght", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
+                    "cters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -172,18 +172,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extends allowed " +
-            "maximum characters lenght")]
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extend allowed m" +
+            "aximum characters length")]
         [NUnit.Framework.TestCaseAttribute("Author", "31", null)]
         [NUnit.Framework.TestCaseAttribute("Title", "101", null)]
-        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendsAllowedMaximumCharactersLenght(string field, string numberOfCharacters, string[] exampleTags)
+        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Field", field);
             argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extends allowed " +
-                    "maximum characters lenght", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extend allowed m" +
+                    "aximum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

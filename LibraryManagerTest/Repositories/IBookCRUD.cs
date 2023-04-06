@@ -7,7 +7,7 @@ namespace LibraryManagerTest.Repositories
         Task<HttpResponseMessage> AddBookAsync(Book book);
         Task<HttpResponseMessage> GetBooksByTitleAsync(string? title);
         Task<HttpResponseMessage> GetBookByIdAsync(int? id);
-        Task<Book> UpdateBookAsync(int id, Book book);
+        Task<HttpResponseMessage> UpdateBookAsync(int id, Book book);
         Task<HttpResponseMessage> DeleteBookAsync(int id);
     }
 }
