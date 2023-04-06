@@ -104,7 +104,7 @@ namespace LibraryManagerTest.StepDefinitions
         public void WhenISendARequestToRetriveABookById(int id)
         {
             _response = _bookCRUD.GetBookByIdAsync(id).Result;
-            _bookResult = _response.Content.ReadAsAsync<Book>().Result;
+            //_bookResult = _response.Content.ReadAsAsync<Book>().Result;
         }
 
         [Then(@"response message should contain a single book with id '(.*)'")]

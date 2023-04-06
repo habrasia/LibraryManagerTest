@@ -34,21 +34,12 @@ namespace LibraryManagerTest.Helpers
         public async Task<HttpResponseMessage> GetBooksByTitleAsync(string? title = null)
         {
             var response = await _client.GetAsync($"books?title={title}");
-
-            //Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed for retriving book/books by \"{title}\" title");
-
-            //return await response.Content.ReadAsAsync<List<Book>>();
             return response;
         }
 
         public async Task<HttpResponseMessage> GetBookByIdAsync(int? id = null)
         {
             var response = await _client.GetAsync($"books/{id}");
-
-            //Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed when retriving book by its id: \"{id}\"");
-
-            //return await response.Content.ReadAsAsync<Book>();
-
             return response;
         }
 
@@ -64,8 +55,6 @@ namespace LibraryManagerTest.Helpers
         public async Task<HttpResponseMessage> DeleteBookAsync(int id)
         {
             HttpResponseMessage response = await _client.DeleteAsync($"books/{id}");
-
-            //Assert.AreEqual(response.StatusCode, HttpStatusCode.NoContent, $"Status response failed when deleting book by its id: \"{id}\"");
             return response;
         }
     }
