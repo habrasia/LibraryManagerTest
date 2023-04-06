@@ -160,14 +160,14 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 17
- testRunner.Given("there is a book with id \'5\' available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("there is a book with id \'6\' available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
- testRunner.And(string.Format("I build a request for a book with id \'5\' with \'{0}\' value that extends the maximu" +
+ testRunner.And(string.Format("I build a request for a book with id \'6\' with \'{0}\' value that extends the maximu" +
                             "m length of {1} characters", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
- testRunner.When("I execute an update request to update the books of id \'4\' information to the corr" +
+ testRunner.When("I execute an update request to update the books of id \'6\' information to the corr" +
                         "esponding library manager endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 20
@@ -211,14 +211,14 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 28
- testRunner.Given("there is a book with id \'5\' available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("there is a book with id \'7\' available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 29
- testRunner.And(string.Format("I build a request for a book with id \'5\' with \'{0}\' value that extends the maximu" +
+ testRunner.And(string.Format("I build a request for a book with id \'7\' with \'{0}\' value that extends the maximu" +
                             "m length of {1} characters", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
- testRunner.When("I execute an update request to update the books of id \'4\' information to the corr" +
+ testRunner.When("I execute an update request to update the books of id \'7\' information to the corr" +
                         "esponding library manager endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 31

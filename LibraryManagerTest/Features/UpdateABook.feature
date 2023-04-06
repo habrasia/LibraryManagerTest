@@ -14,9 +14,9 @@ Examples:
 	| ChangedAuthor | ChangedTitle |                    |
 
 Scenario Outline: Updating a book's information when new values lenghts are bellow allowed maximum characters length
-	Given there is a book with id '5' available
-	And I build a request for a book with id '5' with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
-	When I execute an update request to update the books of id '4' information to the corresponding library manager endpoint
+	Given there is a book with id '6' available
+	And I build a request for a book with id '6' with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
+	When I execute an update request to update the books of id '6' information to the corresponding library manager endpoint
 	Then the response status code should be 200
 
 Examples: 
@@ -25,9 +25,9 @@ Examples:
 	| Title  | 100                |
 
 Scenario Outline: Updating a book's information when new values lenghts extend allowed maximum characters length
-	Given there is a book with id '5' available
-	And I build a request for a book with id '5' with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
-	When I execute an update request to update the books of id '4' information to the corresponding library manager endpoint
+	Given there is a book with id '7' available
+	And I build a request for a book with id '7' with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
+	When I execute an update request to update the books of id '7' information to the corresponding library manager endpoint
 	Then the response status code should be 400
 	And an error message should be returned
 

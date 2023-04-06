@@ -4,6 +4,7 @@ using LibraryManagerTest.Repositories;
 using System.Net;
 using System.Text.Json;
 using System.Web.Http;
+using TechTalk.SpecFlow.CommonModels;
 
 namespace LibraryManagerTest.StepDefinitions
 {
@@ -94,12 +95,16 @@ namespace LibraryManagerTest.StepDefinitions
         [Given(@"there is a book with id '(.*)' available")]
         public void GivenThereIsABookWithIdAvailable(int id)
         {
-            var author = "AuthorIdTest";
-            var title = "TitleIdTest";
-            var description = "DescriptionIdTest";
+            if (!_bookCRUD.GetBookByIdAsync(id).Result.IsSuccessStatusCode)
+            {
+                var author = "AuthorIdTest";
+                var title = "TitleIdTest";
+                var description = "DescriptionIdTest";
 
-            _book = new Book(id, author, title, description);
-            _bookCRUD.AddBookAsync(_book);
+                _book = new Book(id, author, title, description);
+
+                Assert.IsTrue(_bookCRUD.AddBookAsync(_book).Result.IsSuccessStatusCode);
+            }
         }
 
         [When(@"I send a request to retrive a book by id '(.*)'")]
@@ -112,7 +117,7 @@ namespace LibraryManagerTest.StepDefinitions
         [Then(@"response message should contain a single book with id '(.*)'")]
         public void ThenResponseMessageShouldContainASingleBookWithId(int id)
         {
-            Assert.AreEqual(id, _bookResult.Id, $"Id check failed for add {_book.ToString()}");
+            Assert.AreEqual(id, _bookResult.Id, $"Id check failed");
         }
 
         [Given(@"there is no book with id '(.*)' available")]
@@ -127,20 +132,26 @@ namespace LibraryManagerTest.StepDefinitions
         [Given(@"there are books with titles that contain '([^']*)' phrase in them available")]
         public void GivenThereAreBooksWithTitlesThatContainPhraseInThemAvailable(string title)
         {
-            var book1 = new Book()
+            _response = _bookCRUD.GetBooksByTitleAsync(title).Result;
+            _booksListResult = _response.Content.ReadAsAsync<List<Book>>().Result;
+
+            if (_booksListResult.Count == 0)
             {
-                Id = 2,
-                Title = "${title}2",
-                Author = "Author"
-            };
-            var book2 = new Book()
-            {
-                Id = 3,
-                Title = "${title}3",
-                Author = "Author"
-            };
-            _bookCRUD.AddBookAsync(book1);
-            _bookCRUD.AddBookAsync(book2);
+                var book1 = new Book()
+                {
+                    Id = 10,
+                    Title = $"{title}10",
+                    Author = "Author"
+                };
+                var book2 = new Book()
+                {
+                    Id = 11,
+                    Title = $"{title}11",
+                    Author = "Author"
+                };
+                Assert.IsTrue(_bookCRUD.AddBookAsync(book1).Result.IsSuccessStatusCode);
+                Assert.IsTrue(_bookCRUD.AddBookAsync(book2).Result.IsSuccessStatusCode);
+            }
         }
 
         [When(@"I send a request to retrive books with '([^']*)' phrase in the title")]
