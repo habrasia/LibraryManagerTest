@@ -5,8 +5,8 @@ Scenario: Delete a book with the given id
 	When I send a request to delete a book by id '5'
 	Then the response status code should be 204
 	When I send a request to retrive a book by id '5'
-	#Then the response status code should be 404
-	#And an error message should be returned
+	Then the response status code should be 404
+	And an error message should be returned
 
 	 
 Scenario: Attempt to delete a book that doesn't exist return an error

@@ -18,7 +18,6 @@ namespace LibraryManagerTest.Helpers
         public BookCRUD()
         {
             _client = new HttpClient();
-
             _client.BaseAddress = new Uri(_url);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
@@ -46,10 +45,6 @@ namespace LibraryManagerTest.Helpers
         public async Task<HttpResponseMessage> UpdateBookAsync(int id, Book book)
         {
             HttpResponseMessage response = await _client.PutAsJsonAsync($"books/{id}", book);
-
-            //Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed to update book of id {id} to {book.ToString()}");
-
-            //return await response.Content.ReadAsAsync<Book>();
             return response;
         }
 
