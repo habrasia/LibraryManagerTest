@@ -14,6 +14,7 @@ namespace LibraryManagerTest.StepDefinitions
         private HttpResponseMessage _response;
         private Book _book;
         private Book _bookResult;
+        private List<Book> _booksListResult;
 
         public LibraryManagerStepDefinitions()
         {
@@ -123,9 +124,10 @@ namespace LibraryManagerTest.StepDefinitions
         }
 
         [Given(@"there are books with titles that contain '([^']*)' phrase in them available")]
-        public void GivenThereAreBooksWithTitlesThatContainPhraseInThemAvailable(string test)
+        public void GivenThereAreBooksWithTitlesThatContainPhraseInThemAvailable(string title)
         {
-            throw new PendingStepException();
+            _response = _bookCRUD.GetBooksByTitleAsync(title).Result;
+            _booksListResult = _response.Content.ReadAsAsync<List<Book>>().Result;
         }
 
         [When(@"I send a request to retrive books with '([^']*)' phrase in the title")]

@@ -31,13 +31,14 @@ namespace LibraryManagerTest.Helpers
             return response;
         }
 
-        public async Task<IEnumerable<Book>> GetBooksByTitleAsync(string? title = null)
+        public async Task<HttpResponseMessage> GetBooksByTitleAsync(string? title = null)
         {
             var response = await _client.GetAsync($"books?title={title}");
 
-            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed for retriving book/books by \"{title}\" title");
+            //Assert.AreEqual(response.StatusCode, HttpStatusCode.OK, $"Status response failed for retriving book/books by \"{title}\" title");
 
-            return await response.Content.ReadAsAsync<List<Book>>();
+            //return await response.Content.ReadAsAsync<List<Book>>();
+            return response;
         }
 
         public async Task<HttpResponseMessage> GetBookByIdAsync(int? id = null)

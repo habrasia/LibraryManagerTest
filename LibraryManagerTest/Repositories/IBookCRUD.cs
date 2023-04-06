@@ -5,7 +5,7 @@ namespace LibraryManagerTest.Repositories
     public interface IBookCRUD
     {
         Task<HttpResponseMessage> AddBookAsync(Book book);
-        Task<IEnumerable<Book>> GetBooksByTitleAsync(string? title);
+        Task<HttpResponseMessage> GetBooksByTitleAsync(string? title);
         Task<HttpResponseMessage> GetBookByIdAsync(int? id);
         Task<Book> UpdateBookAsync(int id, Book book);
         Task<HttpResponseMessage> DeleteBookAsync(int id);
