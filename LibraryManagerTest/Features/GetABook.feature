@@ -13,8 +13,8 @@ Scenario: Attempt to get a book by non-existing id return an error
 	Then the response status code should be 404
 
 Scenario: Get all books that contain the given word in the title
-	Given there are books with titles that contain 'Test' phrase in them available
-	When I send a request to retrive books with 'Test' phrase in the title
+	Given there are books with titles that contain 'test' phrase in them available
+	When I send a request to retrive books with 'test' phrase in the title
 	Then the response status code should be 200
 	And response message should contain a list of books where title contains 'Test' word
 

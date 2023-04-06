@@ -40,7 +40,7 @@ namespace LibraryManagerTest.StepDefinitions
             switch (status)
             {
                 case 200:
-                    Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode, $"Status response failed for add {_book.ToString()}");
+                    Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode, $"Status response failed for add status check 200");
                     break;
                 case 204:
                     Assert.AreEqual(HttpStatusCode.NoContent, _response.StatusCode, $"Status response failed for add {_book.ToString()}");
@@ -126,20 +126,34 @@ namespace LibraryManagerTest.StepDefinitions
         [Given(@"there are books with titles that contain '([^']*)' phrase in them available")]
         public void GivenThereAreBooksWithTitlesThatContainPhraseInThemAvailable(string title)
         {
+            var book1 = new Book()
+            {
+                Id = 2,
+                Title = "${title}2",
+                Author = "Author"
+            };
+            var book2 = new Book()
+            {
+                Id = 3,
+                Title = "${title}3",
+                Author = "Author"
+            };
+            _bookCRUD.AddBookAsync(book1);
+            _bookCRUD.AddBookAsync(book2);
+        }
+
+        [When(@"I send a request to retrive books with '([^']*)' phrase in the title")]
+        public void WhenISendARequestToRetriveBooksWithPhraseInTheTitle(string title)
+        {
             _response = _bookCRUD.GetBooksByTitleAsync(title).Result;
             _booksListResult = _response.Content.ReadAsAsync<List<Book>>().Result;
         }
 
-        [When(@"I send a request to retrive books with '([^']*)' phrase in the title")]
-        public void WhenISendARequestToRetriveBooksWithPhraseInTheTitle(string test)
-        {
-            throw new PendingStepException();
-        }
-
         [Then(@"response message should contain a list of books where title contains '([^']*)' word")]
-        public void ThenResponseMessageShouldContainAListOfBooksWhereTitleContainsWord(string test)
+        public void ThenResponseMessageShouldContainAListOfBooksWhereTitleContainsWord(string title)
         {
-            throw new PendingStepException();
+            Assert.IsNotEmpty(_booksListResult);
+            Assert.AreEqual(_booksListResult.Count, _booksListResult.Where(o => o.Title.Contains("test")).Count());
         }
 
         [Given(@"there are no books with titles that contain '([^']*)' phrase in them available")]
