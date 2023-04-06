@@ -8,7 +8,6 @@ Scenario: Delete a book with the given id
 	Then the response status code should be 404
 	And an error message should be returned
 
-	 
 Scenario: Attempt to delete a book that doesn't exist return an error
 	Given there is no book with id '99999' available
 	When I send a request to delete a book by id '9999'

@@ -124,18 +124,17 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
-            "cters length")]
-        [NUnit.Framework.TestCaseAttribute("Author", "30", null)]
-        [NUnit.Framework.TestCaseAttribute("Title", "100", null)]
-        public virtual void AddingABookToTheLibraryWhenValuesLenghtsAreBellowAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Attempt to add a book without required fields isn\'t supported")]
+        [NUnit.Framework.TestCaseAttribute("", "Title", "Description", null)]
+        [NUnit.Framework.TestCaseAttribute("Author", "", "Description", null)]
+        public virtual void AttemptToAddABookWithoutRequiredFieldsIsntSupported(string author, string title, string description, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("Field", field);
-            argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
-                    "cters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("Author", author);
+            argumentsOfScenario.Add("Title", title);
+            argumentsOfScenario.Add("Description", description);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Attempt to add a book without required fields isn\'t supported", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -157,34 +156,37 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 15
- testRunner.Given(string.Format("I build a request with \'{0}\' value that extends the maximum length of {1} charact" +
-                            "ers", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I build a request with Author set to \'{0}\', Title set to \'{1}\' and Description se" +
+                            "t to \'{2}\'", author, title, description), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 16
  testRunner.When("I execute a post request to add a book to the corresponding library manager endpo" +
                         "int", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
- testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 18
+ testRunner.And("an error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extend allowed m" +
-            "aximum characters length")]
-        [NUnit.Framework.TestCaseAttribute("Author", "31", null)]
-        [NUnit.Framework.TestCaseAttribute("Title", "101", null)]
-        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
+            "cters length")]
+        [NUnit.Framework.TestCaseAttribute("Author", "30", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "100", null)]
+        public virtual void AddingABookToTheLibraryWhenValuesLenghtsAreBellowAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Field", field);
             argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extend allowed m" +
-                    "aximum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 24
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
+                    "cters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -204,31 +206,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 26
  testRunner.Given(string.Format("I build a request with \'{0}\' value that extends the maximum length of {1} charact" +
                             "ers", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 26
+#line 27
  testRunner.When("I execute a post request to add a book to the corresponding library manager endpo" +
                         "int", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 27
- testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 28
- testRunner.And("an error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Attempt to add a book for the second time")]
-        public virtual void AttemptToAddABookForTheSecondTime()
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extend allowed m" +
+            "aximum characters length")]
+        [NUnit.Framework.TestCaseAttribute("Author", "31", null)]
+        [NUnit.Framework.TestCaseAttribute("Title", "101", null)]
+        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Attempt to add a book for the second time", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("Field", field);
+            argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extend allowed m" +
+                    "aximum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 35
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -250,21 +255,66 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 36
- testRunner.Given("I build a request with Author set to \'<Author>\', Title set to \'<Title>\' and Descr" +
-                        "iption set to \'<Description>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I build a request with \'{0}\' value that extends the maximum length of {1} charact" +
+                            "ers", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 37
  testRunner.When("I execute a post request to add a book to the corresponding library manager endpo" +
                         "int", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 38
+ testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 39
+ testRunner.And("an error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Attempt to add a book for the second time")]
+        public virtual void AttemptToAddABookForTheSecondTime()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Attempt to add a book for the second time", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 45
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 46
+ testRunner.Given("I build a request with Author set to \'<Author>\', Title set to \'<Title>\' and Descr" +
+                        "iption set to \'<Description>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 47
+ testRunner.When("I execute a post request to add a book to the corresponding library manager endpo" +
+                        "int", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 48
  testRunner.And("I execute a post request to add a book to the corresponding library manager endpo" +
                         "int again", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 39
+#line 49
  testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 40
+#line 50
  testRunner.And("an error message should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

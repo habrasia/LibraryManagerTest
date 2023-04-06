@@ -7,7 +7,6 @@ Scenario Outline: Successfully updating book's information
 	When I execute an update request to update the books of id '5' information to the corresponding library manager endpoint
 	Then the response status code should be 200
 	And response message should contain the added book information
-
 Examples: 
 	| Author        | Title	       | Description        |
 	| ChangedAuthor | ChangedTitle | ChangedDescription |
@@ -18,7 +17,6 @@ Scenario Outline: Updating a book's information when new values lenghts are bell
 	And I build a request for a book with id '6' with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
 	When I execute an update request to update the books of id '6' information to the corresponding library manager endpoint
 	Then the response status code should be 200
-
 Examples: 
 	| Field  | NumberOfCharacters |
 	| Author | 30                 |
@@ -30,7 +28,6 @@ Scenario Outline: Updating a book's information when new values lenghts extend a
 	When I execute an update request to update the books of id '7' information to the corresponding library manager endpoint
 	Then the response status code should be 400
 	And an error message should be returned
-
 Examples: 
 	| Field  | NumberOfCharacters |
 	| Author | 31                 |
