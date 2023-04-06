@@ -3,8 +3,6 @@ using LibraryManagerTest.Models;
 using LibraryManagerTest.Repositories;
 using System.Net;
 using System.Text.Json;
-using System.Web.Http;
-using TechTalk.SpecFlow.CommonModels;
 
 namespace LibraryManagerTest.StepDefinitions
 {
