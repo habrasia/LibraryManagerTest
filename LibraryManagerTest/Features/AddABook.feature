@@ -22,8 +22,8 @@ Examples:
 	| Author |       | Description |
 
 
-Scenario Outline: Adding a book to the library when values lenghts are bellow allowed maximum characters length
-	Given I build a request with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
+Scenario Outline: Adding a book to the library when values lenghts are bellow maximum allowed characters length
+	Given I build a request with '<Field>' value that exceeds the maximum length of <NumberOfCharacters> characters
 	When I execute a post request to add a book to the corresponding library manager endpoint
 	Then the response status code should be 200
 Examples: 
@@ -32,8 +32,8 @@ Examples:
 	| Title  | 100                |
 
 
-Scenario Outline: Adding a book to the library is not possible when values lenghts extend allowed maximum characters length
-	Given I build a request with '<Field>' value that extends the maximum length of <NumberOfCharacters> characters
+Scenario Outline: Adding a book to the library is not possible when values lenghts extend maximum allowed characters length
+	Given I build a request with '<Field>' value that exceeds the maximum length of <NumberOfCharacters> characters
 	When I execute a post request to add a book to the corresponding library manager endpoint
 	Then the response status code should be 400
 	And an error message should be returned

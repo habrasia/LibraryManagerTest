@@ -174,17 +174,17 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library when values lenghts are bellow maximum allowed chara" +
             "cters length")]
         [NUnit.Framework.TestCaseAttribute("Author", "30", null)]
         [NUnit.Framework.TestCaseAttribute("Title", "100", null)]
-        public virtual void AddingABookToTheLibraryWhenValuesLenghtsAreBellowAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
+        public virtual void AddingABookToTheLibraryWhenValuesLenghtsAreBellowMaximumAllowedCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Field", field);
             argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library when values lenghts are bellow allowed maximum chara" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library when values lenghts are bellow maximum allowed chara" +
                     "cters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 25
 this.ScenarioInitialize(scenarioInfo);
@@ -207,7 +207,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 26
- testRunner.Given(string.Format("I build a request with \'{0}\' value that extends the maximum length of {1} charact" +
+ testRunner.Given(string.Format("I build a request with \'{0}\' value that exceeds the maximum length of {1} charact" +
                             "ers", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 27
@@ -222,18 +222,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extend allowed m" +
-            "aximum characters length")]
+        [NUnit.Framework.DescriptionAttribute("Adding a book to the library is not possible when values lenghts extend maximum a" +
+            "llowed characters length")]
         [NUnit.Framework.TestCaseAttribute("Author", "31", null)]
         [NUnit.Framework.TestCaseAttribute("Title", "101", null)]
-        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendAllowedMaximumCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
+        public virtual void AddingABookToTheLibraryIsNotPossibleWhenValuesLenghtsExtendMaximumAllowedCharactersLength(string field, string numberOfCharacters, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Field", field);
             argumentsOfScenario.Add("NumberOfCharacters", numberOfCharacters);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extend allowed m" +
-                    "aximum characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a book to the library is not possible when values lenghts extend maximum a" +
+                    "llowed characters length", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 35
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -255,7 +255,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 36
- testRunner.Given(string.Format("I build a request with \'{0}\' value that extends the maximum length of {1} charact" +
+ testRunner.Given(string.Format("I build a request with \'{0}\' value that exceeds the maximum length of {1} charact" +
                             "ers", field, numberOfCharacters), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 37

@@ -1,12 +1,7 @@
 ﻿using LibraryManagerTest.Models;
 using LibraryManagerTest.Repositories;
-using Microsoft.Extensions.Configuration;
-using System.Configuration;
-using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using static System.Net.WebRequestMethods;
-using ConfigurationManager = System.Configuration.ConfigurationManager;
 
 namespace LibraryManagerTest.Helpers
 {

@@ -63,7 +63,7 @@ namespace LibraryManagerTest.StepDefinitions
             Assert.AreEqual(_book.Description, _bookResult.Description, $"Description check failed for add {_book.ToString()}");
         }
 
-        [Given(@"I build a request with '([^']*)' value that extends the maximum length of (.*) characters")]
+        [Given(@"I build a request with '([^']*)' value that exceeds the maximum length of (.*) characters")]
         public void GivenIBuildARequestWithValueThatExtendsTheMaximumLengthOfCharacters(string value, int lenght)
         {
             var author = "Author";
