@@ -139,14 +139,14 @@ namespace LibraryManagerTest.StepDefinitions
             {
                 var book1 = new Book()
                 {
-                    Id = 10,
-                    Title = $"{title}10",
+                    Id = 20,
+                    Title = $"{title}20",
                     Author = "Author"
                 };
                 var book2 = new Book()
                 {
-                    Id = 11,
-                    Title = $"{title}11",
+                    Id = 21,
+                    Title = $"{title}21",
                     Author = "Author"
                 };
                 Assert.IsTrue(_bookCRUD.AddBookAsync(book1).Result.IsSuccessStatusCode);
