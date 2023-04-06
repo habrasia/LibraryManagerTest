@@ -40,13 +40,13 @@ namespace LibraryManagerTest.StepDefinitions
             switch (status)
             {
                 case 200:
-                    Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode, $"Status response failed for add status check 200");
+                    Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode, $"Status response failed for status check 200");
                     break;
                 case 204:
-                    Assert.AreEqual(HttpStatusCode.NoContent, _response.StatusCode, $"Status response failed for add {_book.ToString()}");
+                    Assert.AreEqual(HttpStatusCode.NoContent, _response.StatusCode, $"Status response failed status check 204");
                     break;
                 case 404:
-                    Assert.AreEqual(HttpStatusCode.NotFound, _response.StatusCode, $"Status response failed");
+                    Assert.AreEqual(HttpStatusCode.NotFound, _response.StatusCode, $"Status response failed status check 404");
                     break;
             }
         }
@@ -55,8 +55,7 @@ namespace LibraryManagerTest.StepDefinitions
         public void ThenResponseMessageShouldContainTheAddedBookInformation()
         {
             Assert.AreEqual(_book.Id, _bookResult.Id, $"Id check failed for add {_book.ToString()}");
-            //Assertion removed due to the existing bug Author value isn't assinged to the book while posted
-            //Assert.AreEqual(_book.Author, _bookResult.Author, $"Author check failed for add {_book.ToString()}");
+            Assert.AreEqual(_book.Author, _bookResult.Author, $"Author check failed for add {_book.ToString()}");
             Assert.AreEqual(_book.Title, _bookResult.Title, $"Title check failed for add {_book.ToString()}");
             Assert.AreEqual(_book.Description, _bookResult.Description, $"Description check failed for add {_book.ToString()}");
         }
@@ -87,7 +86,7 @@ namespace LibraryManagerTest.StepDefinitions
             string errorMessageString = _response.Content.ReadAsStringAsync().Result;
             Error? error = JsonSerializer.Deserialize<Error>(errorMessageString);
 
-            Assert.IsNotNull(error.Message, $"Error message check failed for add {_book.ToString()}");
+            Assert.IsNotNull(error.Message, $"Error message check failed");
         }
 
         [Given(@"there is a book with id '(.*)' available")]
@@ -175,6 +174,12 @@ namespace LibraryManagerTest.StepDefinitions
         public void ThenResponseMessageShouldContainAnEmptyList()
         {
             Assert.IsEmpty(_booksListResult);
+        }
+
+        [When(@"I send a request to delete a book by id '(.*)'")]
+        public void WhenISendARequestToDeleteABookById(int id)
+        {
+            _response = _bookCRUD.DeleteBookAsync(id).Result;
         }
 
     }
