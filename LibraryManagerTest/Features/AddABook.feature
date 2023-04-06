@@ -31,3 +31,10 @@ Examples:
 	| Field  | NumberOfCharacters |
 	| Author | 31                 |
 	| Title  | 101                |
+
+Scenario: Attempt to add a book for the second time
+	Given I build a request with Author set to '<Author>', Title set to '<Title>' and Description set to '<Description>'
+	When I execute a post request to add a book to the corresponding library manager endpoint
+	And I execute a post request to add a book to the corresponding library manager endpoint again
+	Then the response status code should be 400
+	And an error message should be returned

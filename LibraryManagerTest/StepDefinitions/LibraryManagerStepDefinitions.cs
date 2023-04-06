@@ -28,6 +28,7 @@ namespace LibraryManagerTest.StepDefinitions
         }
 
         [When(@"I execute a post request to add a book to the corresponding library manager endpoint")]
+        [When(@"I execute a post request to add a book to the corresponding library manager endpoint again")]
         public void WhenIExecuteAPostRequestToAddABookToTheCorrespondingLibraryManagerEndpoint()
         {
             _response = _bookCRUD.AddBookAsync(_book).Result;
