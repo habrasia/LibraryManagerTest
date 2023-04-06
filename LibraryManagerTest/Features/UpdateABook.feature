@@ -36,3 +36,9 @@ Examples:
 	| Author | 31                 |
 	| Title  | 101                |
 
+Scenario: Attempt to update book's id shouldn't be allowed
+	Given there is a book with id '9' available
+	And I build an update request for a book with id '10' with Author set to 'ChangedAuthor', Title set to 'ChangedTitle' and Description set to 'ChangedDescription'
+	When I execute an update request to update the books of id '9' information to the corresponding library manager endpoint
+	Then the response status code should be 400
+	And an error message should be returned
